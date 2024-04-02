@@ -17,6 +17,9 @@ int main(void)
 	logger = iniciar_logger();
 
 	// Usando el logger creado previamente
+	logger = log_create("tp0.log","TP0 probando",1,LOG_LEVEL_INFO);
+	log_info(logger,"Hola! Soy un log");
+	
 	// Escribi: "Hola! Soy un log"
 
 
@@ -26,13 +29,18 @@ int main(void)
 
 	// Usando el config creado previamente, leemos los valores del config y los 
 	// dejamos en las variables 'ip', 'puerto' y 'valor'
-
+	
+	config = config_create("cliente.config");
+	char * key = config_get_string_value(config,"CLAVE");
+	log_info(logger,"el valor es:  %s",key);
+	config_destroy(config);
 	// Loggeamos el valor de config
 
 
 	/* ---------------- LEER DE CONSOLA ---------------- */
 
 	leer_consola(logger);
+	log_destroy(logger);
 
 	/*---------------------------------------------------PARTE 3-------------------------------------------------------------*/
 
@@ -71,11 +79,19 @@ void leer_consola(t_log* logger)
 	char* leido;
 
 	// La primera te la dejo de yapa
+	
 	leido = readline("> ");
 
 	// El resto, las vamos leyendo y logueando hasta recibir un string vacío
-
-
+	while(strcmp(leido,""))
+	{
+		log_info(logger,"lo leido es:  %s",leido);
+		free(leido);
+		leido = readline("> ");
+		
+	};
+	free(leido);
+	
 	// ¡No te olvides de liberar las lineas antes de regresar!
 
 }
