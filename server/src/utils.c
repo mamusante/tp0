@@ -4,8 +4,7 @@ t_log* logger;
 
 int iniciar_servidor(void)
 {
-	// Quitar esta línea cuando hayamos terminado de implementar la funcion
-	//assert(!"no implementado!");
+	//preparamos al receptor para recibir mensajes
 
 	int socket_servidor;
 
@@ -39,8 +38,7 @@ int iniciar_servidor(void)
 
 int esperar_cliente(int socket_servidor)
 {
-	// Quitar esta línea cuando hayamos terminado de implementar la funcion
-	//assert(!"no implementado!");
+	//una vez que se conecta el cliente
 
 	// Aceptamos un nuevo cliente
 	int socket_cliente = accept(socket_servidor,NULL,NULL);
